@@ -1,0 +1,9 @@
+import {Multiline} from './Multiline'
+
+<Multiline
+  styles={{color: '#6144b3'}}
+  Elem="h1"
+  margin={0}
+  lines={['Haskell?', 'What?!']}
+/>
+

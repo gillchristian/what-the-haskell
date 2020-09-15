@@ -3,150 +3,44 @@ import {
   CodeSurferColumns,
   Step,
 } from "code-surfer";
-import { github, vsDark } from "@code-surfer/themes";
+import {vsDark} from "@code-surfer/themes";
+
+import haskellLogo from './assets/haskell.png'
+
+import {Me} from './Me'
+import {Multiline} from './Multiline'
 
 export const theme = vsDark;
 
-# Hello 👋
+<span style={{ display: 'none' /* The first h1 (or h2, h3, ...) is used as title but it has to be MD one */ }}>
 
-You are using [MDX Deck](https://github.com/jxnblk/mdx-deck) and [Code Surfer](https://codesurfer.pomb.us)
+# Haskell? What?!
 
----
+</span>
 
-<CodeSurfer>
+<Multiline
+  Elem="h1"
+  margin={0}
+  lines={["Haskell?", "What?!"]}
+/>
 
-```js title="This is a title" subtitle="and this a subtitle"
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
-}
+<img src={haskellLogo} style={{ width: 300, position: 'fixed', right: '3%', bottom: '10%', transform: 'rotate(-10deg)'}} />
 
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
-
-  if (!sit || ut < 1) {
-    return [];
-  }
-
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
-
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
-
-  return aliqua;
-}
-```
-
-```js
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
-}
-
-function adipiscing(...elit) {
-  if (!elit.sit) {
-    return [];
-  }
-
-  const sed = elit[0];
-  return eiusmod.tempor(sed) ? sed : [sed];
-}
-
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
-
-  if (!sit || ut < 1) {
-    return [];
-  }
-
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
-
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
-
-  return aliqua;
-}
-```
-
-```diff 1[10:14],2[15:19],3[22:27],10:12
-
-```
-
-</CodeSurfer>
+<Me />
 
 ---
 
-<CodeSurferColumns themes={[vsDark, github]}>
+## [haskell.org](https://haskell.org)
 
-<Step>
-
-```js
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
-```
-
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
-```
-
-</Step>
-
-<Step>
-
-```js
-const lorem = (ipsum, dolor, sit) => {
-  const amet = dolor - ipsum;
-  return consectetur.adipiscing(
-    {
-      elit: sed.eiusmod(sit - dolor) / amet + 2,
-    },
-    (tempor, incididunt) => ipsum + amet * incididunt
-  );
-};
-
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
-```
-
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
-
-const sed = (eiusmod, tempor, incididunt) => {
-  const ut = tempor - eiusmod;
-  return labore.et(
-    {
-      amet: dolore.magna(incididunt - tempor) / ut + 2,
-    },
-    (aliqua, elit) => eiusmod + ut * elit
-  );
-};
-```
-
-</Step>
-
-</CodeSurferColumns>
+An advanced, purely functional programming language.<br />Declarative, statically typed code.
 
 ---
 
-docs:  
-[codesurfer.pomb.us](https://codesurfer.pomb.us)
+## Features
+
+- Statically typed
+- Purely functional
+- Type inference
+- Concurrent
+- Lazy
+- Packages
