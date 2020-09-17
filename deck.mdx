@@ -4,25 +4,23 @@ import {
   Step,
 } from "code-surfer";
 import {vsDark} from "@code-surfer/themes";
+import "prismjs/components/prism-haskell"
+import "prismjs/components/prism-ruby"
 
 import haskellLogo from './assets/haskell.png'
+import drakeYes from './assets/drake-yes.png'
+import drakeNo from './assets/drake-no.png'
+import theFeels from './assets/the-feels.png'
+import worthIt from './assets/worth-it.gif'
 
 import {Me} from './Me'
 import {Multiline} from './Multiline'
 
 export const theme = vsDark;
 
-<span style={{ display: 'none' /* The first h1 (or h2, h3, ...) is used as title but it has to be MD one */ }}>
+# What the Haskell?!
 
-# Haskell? What?!
-
-</span>
-
-<Multiline
-  Elem="h1"
-  margin={0}
-  lines={["Haskell?", "What?!"]}
-/>
+A short introduction to Haskell
 
 <img src={haskellLogo} style={{ width: 300, position: 'fixed', right: '3%', bottom: '10%', transform: 'rotate(-10deg)'}} />
 
@@ -30,17 +28,845 @@ export const theme = vsDark;
 
 ---
 
-## [haskell.org](https://haskell.org)
-
-An advanced, purely functional programming language.<br />Declarative, statically typed code.
+> An advanced, purely functional programming language.
+>
+> Declarative, statically typed code.
+>
+> [haskell.org](https://haskell.org)
 
 ---
 
-## Features
+<Multiline
+  Elem="h2"
+  lines={["⚠️⚠️⚠️", "Haskell is", "VERY", "different", "⚠️⚠️⚠️"]}
+/>
+
+---
+
+## Why Haskell? 🤔
+
+---
+
+## Haskell is very different
+
+<small>
+
+> Only learn languages that teach you something new
+>
+> <small> <i>Someone I don't remember</i> </small>
+
+</small>
+
+<img src={drakeYes} style={{ width: 250, position: 'fixed', left: '5%', top: '7%', transform: 'rotate(-8deg)'}} />
+
+---
+
+<Multiline
+  Elem="p"
+  margin={0}
+  lines={["Other languages and communities", "are adopting typed FP ideas"]}
+/>
+
+- Rust: Option/Result, immutability, ADTs (enums), etc
+- [Reason](https://reasonml.github.io/) (or [ReScript](https://rescript-lang.org/))
+- [Pattern matching in C#](https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching)
+- [Arrow](https://arrow-kt.io/) ecosystem in Kotlin
+- [fp-ts](https://gcanti.github.io/fp-ts/) ecosystem in TypScript
+
+---
+
+## How is Haskell different? 🤔
+
+---
+
+## First a ~~short~~ tour of the syntax
+
+---
+
+<CodeSurfer>
+
+```haskell title="Functions"
+add :: Int -> Int -> Int
+add = \a -> \b -> a + b
+```
+
+```haskell 1 title="Functions"
+add :: Int -> Int -> Int
+add = \a -> \b -> a + b
+```
+
+```haskell 1[8:10] title="Functions"
+add :: Int -> Int -> Int
+add = \a -> \b -> a + b
+```
+
+```haskell 1[15:24] title="Functions"
+add :: Int -> Int -> Int
+add = \a -> \b -> a + b
+```
+
+```haskell 2 title="Functions"
+add :: Int -> Int -> Int
+add = \a -> \b -> a + b
+```
+
+```haskell 2[7:11] title="Functions"
+add :: Int -> Int -> Int
+add = \a -> \b -> a + b
+```
+
+```haskell 2[13:23] title="Functions"
+add :: Int -> Int -> Int
+add = \a -> \b -> a + b
+```
+
+```haskell title="Functions"
+add :: Int -> Int -> Int
+add = \a -> \b -> a + b
+
+add 1 3 -- 4
+add 2 8 -- 10
+```
+
+```haskell 1[14:24],4,5 title="Functions"
+add :: Int -> Int -> Int
+add = \a -> \b -> a + b
+
+inc :: Int -> Int
+inc = add 1
+```
+
+```haskell title="Functions"
+add :: Int -> Int -> Int
+add = \a -> \b -> a + b
+
+inc :: Int -> Int
+inc = add 1
+
+inc 2  -- 3
+inc 41 -- 42
+```
+
+```haskell 2[7:19] title="Functions"
+add :: Int -> Int -> Int
+add = \a b -> a + b
+```
+
+```haskell title="Functions"
+add :: Int -> Int -> Int
+add a b = a + b
+```
+
+```haskell title="Operators"
+add :: Int -> Int -> Int
+add a b = a + b
+
+(#) :: Int -> Int -> Int
+(#) a b = a + b
+```
+
+```haskell title="Operators"
+add :: Int -> Int -> Int
+add a b = a + b
+
+(#) :: Int -> Int -> Int
+(#) a b = a + b
+
+(#) :: Int -> Int -> Int
+a # b = a + b
+```
+
+```haskell title="Operators"
+add :: Int -> Int -> Int
+add a b = a + b
+
+(#) :: Int -> Int -> Int
+(#) a b = a + b
+
+(#) :: Int -> Int -> Int
+a # b = a + b
+
+1 + 3 -- 4
+8 + 9 -- 17
+
+1 # 3 -- 4
+8 # 9 -- 17
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```haskell title="Unconstrained Polymorphism"
+toList :: a -> [a]
+toList x = [x]
+```
+
+```haskell 1[11:18] title="Unconstrained Polymorphism"
+toList :: a -> [a]
+toList x = [x]
+```
+
+```haskell title="Unconstrained Polymorphism"
+toList :: a -> [a]
+toList x = [x]
+
+toList "Catawiki" -- ["Catawiki"]
+toList 42         -- [42]
+toList [1, 2, 3]  -- [[1, 2, 3]]
+```
+
+```haskell title="Unconstrained Polymorphism"
+identity :: a -> a
+identity x = x
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```haskell title="Constrained Polymorphism"
+add :: Int -> Int -> Int
+add a b = a + b
+```
+
+```haskell title="Constrained Polymorphism"
+add :: Num a => a -> a -> a
+add a b = a + b
+```
+
+```haskell 1[8:27] title="Constrained Polymorphism"
+add :: Num a => a -> a -> a
+add a b = a + b
+```
+
+```haskell 1,3[3:5],4[3:5],5[3:5],6[3:8],7[3:5],8[3:8],9[3:13],12[10:17],13[10:20],14[10:16],15[10:18],16[10:19]
+GHCi> :i Num
+class Num a where
+  (+) :: a -> a -> a
+  (-) :: a -> a -> a
+  (*) :: a -> a -> a
+  negate :: a -> a
+  abs :: a -> a
+  signum :: a -> a
+  fromInteger :: Integer -> a
+  {-# MINIMAL (+), (*), abs, signum, fromInteger, (negate | (-)) #-}
+        -- Defined in ‘GHC.Num’
+instance Num Word -- Defined in ‘GHC.Num’
+instance Num Integer -- Defined in ‘GHC.Num’
+instance Num Int -- Defined in ‘GHC.Num’
+instance Num Float -- Defined in ‘GHC.Float’
+instance Num Double -- Defined in ‘GHC.Float’
+```
+
+```haskell title="Constrained Polymorphism"
+add :: Num a => a -> a -> a
+add a b = a + b
+
+add 3 1     -- 4
+add 1.3 2.2 -- 3.5
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```haskell 1 title="Constrained Polymorphism"
+average :: (Real a, Fractional b) => [a] -> b
+average as =
+  let total = realToFrac (sum as)
+      count = realToFrac (length as)
+   in total / count
+```
+
+```haskell title="let expressions"
+average :: (Real a, Fractional b) => [a] -> b
+average as =
+  let total = realToFrac (sum as)
+      count = realToFrac (length as)
+   in total / count
+```
+
+```haskell 3:5 title="let expressions"
+average :: (Real a, Fractional b) => [a] -> b
+average as =
+  let total = realToFrac (sum as)
+      count = realToFrac (length as)
+   in total / count
+```
+
+```haskell 3[3:33],4[7:36] title="let expressions"
+average :: (Real a, Fractional b) => [a] -> b
+average as =
+  let total = realToFrac (sum as)
+      count = realToFrac (length as)
+   in total / count
+```
+
+```haskell 5 title="let expressions"
+average :: (Real a, Fractional b) => [a] -> b
+average as =
+  let total = realToFrac (sum as)
+      count = realToFrac (length as)
+   in total / count
+```
+
+```haskell title="let expressions"
+average :: (Real a, Fractional b) => [a] -> b
+average as =
+  let total = realToFrac (sum as)
+      count = realToFrac (length as)
+   in total / count
+
+average [1, 2, 3]       -- 2.0
+average [1.5, 2.5, 3.5] -- 2.5
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```haskell title="Type synonyms"
+type ID = String
+
+type Age = Int
+
+type FilePath = String
+```
+
+```haskell title="Type declarations"
+data Company = Catawiki
+```
+
+```haskell title="Type declarations"
+data Company = Catawiki
+
+companyName :: Company -> String
+companyName company = "Catawiki"
+```
+
+```haskell title="Type declarations"
+data Company = Catawiki
+
+companyName :: Company -> String
+companyName company = "Catawiki"
+
+companyName Catawiki -- "Catawiki"
+```
+
+```haskell title="Type declarations"
+data Bool = True | False
+```
+
+```haskell title="Type declarations"
+data Season =
+  Spring | Summer | Autumn | Winter
+```
+
+```haskell title="Pattern matching"
+data Season =
+  Spring | Summer | Autumn | Winter
+
+seasonName :: Season -> String
+seasonName season =
+  case season of
+    Spring -> "spring"
+    Summer -> "summer"
+    Autumn -> "autumn"
+    Winter -> "winter"
+```
+
+```haskell title="Pattern matching"
+isOneOrTwo :: Int -> Bool
+isOneOrTwo x =
+  case x of
+    1 -> True
+    2 -> True
+    y -> False
+```
+
+```haskell title="Pattern matching"
+seasonFromString :: String -> Season
+seasonFromString season =
+  case season of
+    "spring" -> Spring
+    "summer" -> Summer
+    "autumn" -> Autumn
+    "winter" -> Winter
+```
+
+```haskell title="Pattern matching"
+seasonFromString :: String -> Season
+seasonFromString season =
+  case season of
+    "spring" -> Spring
+    "summer" -> Summer
+    "autumn" -> Autumn
+    "winter" -> Winter
+    other    -> ???
+```
+
+```haskell title="Algebraic Data Types"
+data Maybe a = Nothing | Just a
+```
+
+```haskell 1[6:12] title="Algebraic Data Types"
+data Maybe a = Nothing | Just a
+```
+
+```haskell 1[16:31] title="Algebraic Data Types"
+data Maybe a = Nothing | Just a
+```
+
+```haskell title="Algebraic Data Types"
+data Maybe a = Nothing | Just a
+
+seasonFromString :: String -> Maybe Season
+seasonFromString season =
+  case season of
+    "spring" -> Just Spring
+    "summer" -> Just Summer
+    "autumn" -> Just Autumn
+    "winter" -> Just Winter
+    other    -> Nothing
+```
+
+```haskell 3[31:42] title="Algebraic Data Types"
+data Maybe a = Nothing | Just a
+
+seasonFromString :: String -> Maybe Season
+seasonFromString season =
+  case season of
+    "spring" -> Just Spring
+    "summer" -> Just Summer
+    "autumn" -> Just Autumn
+    "winter" -> Just Winter
+    other    -> Nothing
+```
+
+```haskell 6:10 title="Algebraic Data Types"
+data Maybe a = Nothing | Just a
+
+seasonFromString :: String -> Maybe Season
+seasonFromString season =
+  case season of
+    "spring" -> Just Spring
+    "summer" -> Just Summer
+    "autumn" -> Just Autumn
+    "winter" -> Just Winter
+    other    -> Nothing
+```
+
+```haskell
+data Maybe a = Nothing | Just a
+
+seasonFromString :: String -> Maybe Season
+seasonFromString season =
+  case season of
+    "spring" -> Just Spring
+    "summer" -> Just Summer
+    "autumn" -> Just Autumn
+    "winter" -> Just Winter
+    other    -> Nothing
+
+seasonFromString "spring" -- Just Spring
+seasonFromString "summer" -- Just Summer
+
+seasonFromString "foo"    -- Nothing
+seasonFromString "sumer"  -- Nothing
+```
+
+</CodeSurfer>
+
+---
+
+## So, how is Haskell different? 🤔
+
+<small>
+
+_Besides the syntax_ 😅
+
+</small>
+
+---
 
 - Statically typed
-- Purely functional
 - Type inference
-- Concurrent
+- Purely functional
+- Immutability
 - Lazy
-- Packages
+
+---
+
+## Immutability 🥊
+
+---
+
+<CodeSurfer>
+
+```js
+let a = 1
+
+a = a + 1
+```
+
+</CodeSurfer>
+
+<img src={drakeNo} style={{ width: 350, position: 'fixed', right: '7%', top: '10%', transform: 'rotate(8deg)'}} />
+
+---
+
+## Statically Typed 🤗
+
+<img src={theFeels} style={{ width: 350, position: 'fixed', right: '5%', bottom: '7%', transform: 'rotate(-8deg)'}} />
+
+---
+
+## Everything needs to be typed
+
+### Yeah, JSON as well!
+
+---
+
+<CodeSurfer>
+
+```js
+const user = {
+  name: 'Jane',
+  last_name: 'Doe',
+  age: 34,
+}
+
+JSON.stringify(user)
+```
+
+```ruby
+require 'json'
+
+user = {
+  'name' => 'Jane',
+  'last_name' => 'Doe',
+  'age' => 34,
+}
+
+user.to_json
+```
+
+```haskell
+data User = User
+  { name :: String,
+    last_name :: String,
+    age :: Int
+  }
+```
+
+```haskell
+data User = User
+  { name :: String,
+    last_name :: String,
+    age :: Int
+  }
+
+instance ToJSON User where
+  toJSON u = object
+    [ "name"      .= toJSON (name u)
+    , "last_name" .= toJSON (last_name u)
+    , "age"       .= toJSON (age u)
+    ]
+```
+
+```haskell
+data User = User
+  { name :: String,
+    last_name :: String,
+    age :: Int
+  } deriving (Generic, ToJSON, FromJSON)
+
+instance ToJSON User where
+  toJSON u = object
+    [ "name"      .= toJSON (name u)
+    , "last_name" .= toJSON (last_name u)
+    , "age"       .= toJSON (age u)
+    ]
+```
+
+```haskell 1:13
+data User = User
+  { name :: String,
+    last_name :: String,
+    age :: Int
+  } deriving (Generic, ToJSON, FromJSON)
+
+user = User
+  { name = "Jane",
+    last_name = "Doe",
+    age = 34
+  }
+
+encode user
+```
+
+</CodeSurfer>
+
+---
+
+### Type Driven Development 🛡️
+
+Make impossible states impossible (to represent)
+
+---
+
+<CodeSurfer>
+
+```haskell
+data Maybe a = Nothing | Just a
+
+seasonFromString :: String -> Maybe Season
+seasonFromString season =
+  case season of
+    "spring" -> Just Spring
+    "summer" -> Just Summer
+    "autumn" -> Just Autumn
+    "winter" -> Just Winter
+    other    -> Nothing
+```
+
+```haskell
+first :: [a] -> Maybe a
+first xs =
+  case xs of
+    []       -> Nothing
+    (x:rest) -> Just x
+```
+
+</CodeSurfer>
+
+---
+
+## Type inference 🕵️‍♀️
+
+---
+
+<CodeSurfer>
+
+```haskell
+average :: (Real a, Fractional b) => [a] -> b
+average as =
+  let total = realToFrac (sum as)
+      count = realToFrac (length as)
+   in total / count
+```
+
+```haskell
+average as =
+  let total = realToFrac (sum as)
+      count = realToFrac (length as)
+   in total / count
+```
+
+```haskell
+GHCi> :t average
+average ::
+  (Fractional a1, Real a2, Foldable t) => t a2 -> a1
+```
+
+```haskell
+(Real a2, Fractional a1, Foldable t) => t a2  -> a1
+-- vs
+(Real a,  Fractional b             ) => [ a ] -> b
+```
+
+
+</CodeSurfer>
+
+---
+
+### 👀 Example: Type inference errors 👨‍💻
+
+<!-- TODO -->
+
+---
+
+## Lazy evaluation 😴
+
+---
+
+### 👀 Example: Infinite lists 👨‍💻
+
+---
+
+### 👀 Example: if/else function 👨‍💻
+
+---
+
+## Purely functional 😎
+
+---
+
+<CodeSurfer>
+
+```haskell
+key = "super-secret-key"
+
+checksum :: ByteString -> ByteString
+checksum content = MD5.hash (key <> content)
+```
+
+```haskell 1:4
+checksum :: ByteString -> ByteString
+checksum content = 
+  let key = readFile "~/.secrets"
+   in MD5.hash (key <> content)
+```
+
+</CodeSurfer>
+
+---
+
+<small>
+
+```
+• Couldn't match type ‘ByteString’ with ‘IO ByteString’
+  Expected type: IO ByteString
+    Actual type: ByteString
+```
+
+</small>
+
+---
+
+### No side effects !!! 😠
+
+<img src={drakeNo} style={{ width: 350, position: 'fixed', right: '7%', top: '10%', transform: 'rotate(8deg)'}} />
+
+---
+
+### No explicit side effects !!! 😎
+
+<img src={drakeYes} style={{ width: 350, position: 'fixed', left: '5%', top: '7%', transform: 'rotate(-8deg)'}} />
+
+---
+
+<CodeSurfer>
+
+```haskell 1[27:39] title="IO is for side effects"
+checksum :: ByteString -> IO ByteString
+checksum content = do
+  key <- readFile "~/.secrets"
+  pure (MD5.hash (key <> content))
+```
+
+```haskell title="IO is for side effects"
+checksum :: ByteString -> IO ByteString
+checksum content = do
+  key <- readFile "~/.secrets"
+  pure (MD5.hash (key <> content))
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```haskell
+GHCi> :t readFile
+readFile :: FilePath -> IO String
+```
+
+```haskell
+GHCi> :t getLine
+getLine :: IO String
+```
+
+```haskell
+GHCi> :t putStrLn
+putStrLn :: String -> IO ()
+```
+
+</CodeSurfer>
+
+---
+
+How's **IO String** different from **String** ?
+
+How to get **String** when I have **IO String** ?
+
+---
+
+### 🌯 Monads (and friends) 🌯
+
+---
+
+<CodeSurfer>
+
+```haskell
+main = do
+  putStrLn "What's your name?"
+  name <- getLine
+  putStrLn ("Hello, " ++ name ++ "!")
+```
+
+```haskell 1:5
+main =
+  putStrLn "What's your name?"
+    >> (getLine
+           >>= (\name ->
+                  putStrLn ("Hello, " ++ name ++ "!")))
+```
+
+</CodeSurfer>
+
+---
+
+There's more
+
+- Applicative
+- Foldable / Traversable
+- Point-free syntax
+- Parsers
+- Currying 
+- Monad transformers
+- Records / Lenses
+- Language extensions
+- Debugging
+
+---
+
+## Is it worth? 🤔
+
+---
+
+## Totally!!! 💯 <sup>\*</sup>
+
+<img src={worthIt} />
+
+<br />
+
+<small>
+<small>
+<small>
+
+\* at least to me 🤓
+
+</small>
+</small>
+</small>
+
+---
+
+## Fin 😅
+
+See you at #functional
+
+---
+
+## Questions?
